@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="title">Form Data Diri</h1>
+  <!-- <h1 class="title">Form Data Diri</h1>
   <app-form (userDataSubmit)="addUser($event)"></app-form>
 
 
@@ -24,7 +24,7 @@
         </tr>
       </tbody>
   </table>
-  </div>
+  </div> -->
 
 
  
@@ -64,4 +64,35 @@
  
       <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
      </form> -->
+
+
+     <!-- ----------------------------------------------------------------------- -->
+     <!--                                  DAY 2                                  -->
+     <!-- ----------------------------------------------------------------------- -->
+
+     <div class="shown" *ngIf="isShown; else shownFalse">muncul</div>
+     <!-- <div class="shown" *ngIf="!isShown">muncul ketika false</div> -->
+     <ng-template #shownFalse>
+      <p>false untuk ng template</p>
+     </ng-template>
+
+     
+
+    <p>{{'12' | currency:'IDR':'symbol'}}</p>
+    <p>{{'kenny' | reverse}}</p>
+    <p>{{'kenny' | uppercase}}</p>
+    <p>{{today | date}}</p>
+    <p>{{today | date:'MM-d-YYYY'}}</p>
+
+     <!-- <ul>
+       <li *ngFor="let item of dataUser.address">
+         {{item.city}}
+         <div [ngSwitch]="item.zone">
+           <div *ngSwitchCase="1" [ngStyle]="{color: item.zone === 1 ? 'red' : 'yellow'}">merah</div>
+           <div *ngSwitchCase="2" [ngClass]="{'zone-safe': item.zone === 2}">biru</div>
+           <div *ngSwitchCase="3" [ngClass]="item.zone === 3 ? 'zone-green' : 'zone-safe'">hijau</div>
+           <div *ngSwitchDefault>kuning</div>
+         </div>
+       </li>
+     </ul> -->
 </div>

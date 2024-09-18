@@ -5,8 +5,8 @@ export interface DataUser {
     address?: Address;
 }
 
-
 interface Address {
+    zone?: number;
     zipcode?: number;
     city: string;
     province: string;

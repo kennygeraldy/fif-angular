@@ -6,12 +6,13 @@ import { ButtonComponent } from "../button/button.component";
 import { GenerateRandomIdService } from '../generate-random-id.service';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormComponent } from "../form/form.component";
+import { ReversePipe } from './reverse.pipe';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ButtonComponent, FormsModule, ReactiveFormsModule, FormComponent],
+  imports: [RouterOutlet, CommonModule, ButtonComponent, FormsModule, ReactiveFormsModule, FormComponent, ReversePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -24,6 +25,8 @@ export class AppComponent implements OnInit{
   backgroundColor: string = 'yellow';
   name: string ='';
   addUserForm!: FormGroup;
+  isShown: boolean = true;
+  today = new Date;
 
 
   constructor(
@@ -54,7 +57,8 @@ export class AppComponent implements OnInit{
           {
             zipcode: 14310,
             city: 'Tangerang',
-            province: 'Cisauk'
+            province: 'Cisauk',
+            zone: 1,
           }
       },
       {
@@ -65,7 +69,8 @@ export class AppComponent implements OnInit{
           {
             zipcode: 1421,
             city: 'Bali',
-            province: 'Denpasar'
+            province: 'Denpasar',
+            zone: 2,
           }
       }]
   }
