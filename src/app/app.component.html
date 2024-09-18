@@ -26,7 +26,10 @@
           </div>
           </td>
           <td>{{data.paymentDeadline | date}}</td>
-          <td><button (click)="deleteUser(i)">DELETE</button></td>
+          <td><a (click)="deleteUser(i)">
+            <img src="https://img.icons8.com/?size=48&id=7837&format=png" width="20" height="20" alt="trashcan icon">
+          </a>
+           </td>
           <td>
             <input [(ngModel)]="data.status" type="checkbox" name="status" id="status" (change)="setStatus(i)" [checked]="data.status"/>
           </td>
@@ -34,6 +37,8 @@
       </tbody>
   </table>
   </div>
+
+  <div id="snackbar">User added successfully!</div>
 
 
  

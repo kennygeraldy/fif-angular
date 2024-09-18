@@ -111,6 +111,20 @@ export class AppComponent implements OnInit{
     return differenceInDays < 3;
   }
 
+   showSnackbar(message: any) {
+    let snackbar = document.getElementById("snackbar");
+
+    if (snackbar) {
+      snackbar.textContent = message;
+  
+      snackbar.classList.add("show");
+  
+      setTimeout(function () {
+        snackbar.classList.remove("show");
+      }, 3000);
+    }
+  }
+  
   setStatus(event: any) {
     this.statusPaymentService.setUserStatus(event)
   }
