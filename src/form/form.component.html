@@ -1,0 +1,59 @@
+<div class="container">
+    <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+
+
+      <label for="nameForm">Input your name</label>
+      <input id="nameForm" formControlName="nameForm">
+      <div class="validation-error" *ngIf="nameForm?.errors?.['required'] && nameForm?.touched">
+        Notes: Please input your name
+      </div>
+      <div class="validation-error" *ngIf="nameForm?.errors?.['minlength'] && nameForm?.touched">
+        Notes: Character must be at least 3 digits
+      </div>
+
+
+      <label for="emailForm">Input your email</label>
+      <input id="emailForm" formControlName="emailForm">
+      <div class="validation-error" *ngIf="emailForm?.errors?.['required'] && emailForm?.touched">
+        Notes: Please input your email
+      </div>
+
+
+      <label for="cityForm">Input your city</label>
+      <input id="cityForm" formControlName="cityForm">
+      <div class="validation-error" *ngIf="cityForm?.errors?.['required'] && cityForm?.touched">
+        Notes: Please input your city
+      </div>
+
+
+      <label for="provinceForm">Input your province</label>
+      <input id="provinceForm" formControlName="provinceForm">
+      <div class="validation-error" *ngIf="provinceForm?.errors?.['required'] && provinceForm?.touched">
+        Notes: Please input your province
+      </div>
+
+
+      <label for="zipCodeForm">Input your zipcode</label>
+      <input id="zipCodeForm" formControlName="zipCodeForm">
+      <div class="validation-error" *ngIf="zipCodeForm?.errors?.['required'] && zipCodeForm?.touched">
+        Notes: Please input your zipcode
+      </div>
+ 
+      <label for="phoneNumber">Input your phone number</label>
+      <input id="phoneNumber" formControlName="phoneNumberForm">
+      <div class="validation-error" *ngIf="phoneNumberForm?.errors?.['required'] && phoneNumberForm?.touched">
+        Notes: Please input your phone number
+      </div>
+ 
+      <div class="validation-error" *ngIf="phoneNumberForm?.errors?.['minlength'] && phoneNumberForm?.touched">
+        Notes: Character must be at least 9 digits
+      </div>
+      <div class="validation-error" *ngIf="phoneNumberForm?.errors?.['maxlength'] && phoneNumberForm?.touched">
+        Notes: Character must be 13 digits
+      </div>
+ 
+      <div class="wrapper">
+          <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
+      </div>
+    </form>
+  </div>
