@@ -9,12 +9,14 @@
           <th>No.</th>
           <th>Nama</th>
           <th>Email</th>
-          <!-- <th colspan="3">Address</th> -->
           <th>Address</th>
+          <th>Payment Deadline</th>
+          <th>Action</th>
+          <th>Completed?</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of dataUser, let i = index">
+        <tr *ngFor="let data of dataUser, let i = index"  [ngClass]="{'strike': data.status, 'near-deadline': isPaymentNearDeadline(data.paymentDeadline)}">
           <td>{{i + 1 }}</td>
           <td>{{data.name }}</td>
           <td>{{data.email}}</td>
@@ -22,6 +24,11 @@
             <div>
               {{data.address?.city}}, {{data.address?.province}}, {{data.address?.zipcode}}
           </div>
+          </td>
+          <td>{{data.paymentDeadline | date}}</td>
+          <td><button (click)="deleteUser(i)">DELETE</button></td>
+          <td>
+            <input [(ngModel)]="data.status" type="checkbox" name="status" id="status" (change)="setStatus(i)" [checked]="data.status"/>
           </td>
         </tr>
       </tbody>

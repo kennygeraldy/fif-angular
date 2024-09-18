@@ -8,6 +8,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } f
 import { FormComponent } from "./form/form.component";
 import { ReversePipe } from '../pipe/reverse.pipe';
 import { UserdataService } from '../service/userdata/userdata.service';
+import { DeletedataService } from '../service/delete-data/deletedata.service';
+import { StatuspaymentService } from '../service/status-payment/statuspayment.service';
 
 
 @Component({
@@ -32,7 +34,9 @@ export class AppComponent implements OnInit{
 
   constructor(
     private randomIdService: GenerateRandomIdService,
-    private userDataService: UserdataService
+    private userDataService: UserdataService,
+    private deleteDataService: DeletedataService,
+    private statusPaymentService: StatuspaymentService,
   ) {
     this.randomId = this.randomIdService.generateId();
     this.addUserForm = new FormGroup({
@@ -96,7 +100,18 @@ export class AppComponent implements OnInit{
     this.userDataService.addUser(event)
   }
   
-  // onSubmit() {
-  //   console.log(this.addUserForm.value)
-  // }
+  deleteUser(event: any) {
+    this.deleteDataService.deleteUser(event)
+  }
+
+  isPaymentNearDeadline(event: Date): boolean {
+    const deadlineDate = new Date(event);
+    const differenceInTime = deadlineDate.getTime() - new Date().getTime();
+    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+    return differenceInDays < 3;
+  }
+
+  setStatus(event: any) {
+    this.statusPaymentService.setUserStatus(event)
+  }
 }

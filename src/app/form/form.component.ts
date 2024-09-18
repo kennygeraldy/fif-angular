@@ -15,6 +15,8 @@ export class FormComponent {
   dataUser!: Array<DataUser>;
 addUserForm!: FormGroup;
 @Output() userDataSubmit = new EventEmitter<DataUser>();
+@Output() userDataDelete = new EventEmitter<DataUser>();
+@Output() userStatus = new EventEmitter<DataUser>();
 
 
 constructor(
@@ -24,8 +26,10 @@ constructor(
     emailForm: new FormControl('', [Validators.required, Validators.email]),
     cityForm: new FormControl('', Validators.required),
     provinceForm: new FormControl ('', Validators.required),
-    zipCodeForm: new FormControl ('', Validators.required),
-    phoneNumberForm: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(13)])
+    zipCodeForm: new FormControl (0, Validators.required),
+    phoneNumberForm: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(13)]),
+    paymentDeadlineForm: new FormControl(new Date(), [Validators.required]),
+    statusForm: new FormControl(false, [Validators.required])
   });
 }
 
@@ -46,9 +50,16 @@ get zipCodeForm() {
   return this.addUserForm.get('zipCodeForm')
 }
 
+get paymentDeadlineForm() {
+  return this.addUserForm.get('paymentDeadlineForm')
+}
 
 get phoneNumberForm() {
   return this.addUserForm.get('phoneNumberForm')
+
+}
+get statusForm() {
+  return this.addUserForm.get('statusForm')
 }
 
 
@@ -64,13 +75,58 @@ onSubmit() {
         zipcode: this.zipCodeForm?.value,
         city: this.cityForm?.value,
         province: this.provinceForm?.value,
-      }
+      },
+      paymentDeadline: this.paymentDeadlineForm?.value,
+      status: this.statusForm?.value,
     }
     this.userDataSubmit.emit(formData);
     this.addUserForm.reset();
     console.log(formData)
   } else {
     console.error('Form is invalid');
+  }
+}
+
+onDelete() {
+  if(this.addUserForm.valid) {
+    const formData: DataUser = 
+    {
+      name: this.nameForm?.value,
+      email: this.emailForm?.value,
+      phoneNumber: this.phoneNumberForm?.value,
+      address:{
+        zipcode: this.zipCodeForm?.value,
+        city: this.cityForm?.value,
+        province: this.provinceForm?.value,
+      },
+      paymentDeadline: this.paymentDeadlineForm?.value,
+      status: this.statusForm?.value,
+    }
+    this.userDataDelete.emit((formData));
+    console.log(formData)
+  } else {
+    console.error('Data is invalid')
+  }
+}
+
+strikethrough() {
+  if(this.addUserForm.valid) {
+    const formData: DataUser = 
+    {
+      name: this.nameForm?.value,
+      email: this.emailForm?.value,
+      phoneNumber: this.phoneNumberForm?.value,
+      address:{
+        zipcode: this.zipCodeForm?.value,
+        city: this.cityForm?.value,
+        province: this.provinceForm?.value,
+      },
+      paymentDeadline: this.paymentDeadlineForm?.value,
+      status: this.statusForm?.value,
+    }
+    this.userStatus.emit((formData))
+  } else {
+    console.error('Data is invalid')
   }
 }
 
