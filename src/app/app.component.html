@@ -84,15 +84,15 @@
     <p>{{today | date}}</p>
     <p>{{today | date:'MM-d-YYYY'}}</p>
 
-     <!-- <ul>
-       <li *ngFor="let item of dataUser.address">
-         {{item.city}}
-         <div [ngSwitch]="item.zone">
-           <div *ngSwitchCase="1" [ngStyle]="{color: item.zone === 1 ? 'red' : 'yellow'}">merah</div>
-           <div *ngSwitchCase="2" [ngClass]="{'zone-safe': item.zone === 2}">biru</div>
-           <div *ngSwitchCase="3" [ngClass]="item.zone === 3 ? 'zone-green' : 'zone-safe'">hijau</div>
+     <ul>
+       <li *ngFor="let item of dataUser">
+         {{item.address?.city}}
+         <div [ngSwitch]="item.address?.zone">
+           <div *ngSwitchCase="1" [ngStyle]="{color: item.address?.zone === 1 ? 'red' : 'yellow'}">merah</div>
+           <div *ngSwitchCase="2" [ngClass]="{'zone-safe': item.address?.zone === 2}">biru</div>
+           <div *ngSwitchCase="3" [ngClass]="item.address?.zone === 3 ? 'zone-green' : 'zone-safe'">hijau</div>
            <div *ngSwitchDefault>kuning</div>
          </div>
        </li>
-     </ul> -->
+     </ul>
 </div>
