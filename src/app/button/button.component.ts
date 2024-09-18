@@ -1,6 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { DataUser } from '../app/app.entity';
+import { DataUser } from '../app.entity';
 
 
 @Component({

@@ -2,11 +2,12 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataUser } from './app.entity';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from "../button/button.component";
-import { GenerateRandomIdService } from '../generate-random-id.service';
+import { ButtonComponent } from "./button/button.component";
+import { GenerateRandomIdService } from '../service/generate-random-id/generate-random-id.service';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormComponent } from "../form/form.component";
-import { ReversePipe } from './reverse.pipe';
+import { FormComponent } from "./form/form.component";
+import { ReversePipe } from '../pipe/reverse.pipe';
+import { UserdataService } from '../service/userdata/userdata.service';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class AppComponent implements OnInit{
 
 
   constructor(
-    private randomIdService: GenerateRandomIdService
+    private randomIdService: GenerateRandomIdService,
+    private userDataService: UserdataService
   ) {
     this.randomId = this.randomIdService.generateId();
     this.addUserForm = new FormGroup({
@@ -49,30 +51,32 @@ export class AppComponent implements OnInit{
 
 
   ngOnInit(): void {
-      this.dataUser = [{
-        name: 'Kenny',
-        email:  'Ken@gmail.com',
-        phoneNumber: '081382913391',
-        address:
-          {
-            zipcode: 14310,
-            city: 'Tangerang',
-            province: 'Cisauk',
-            zone: 1,
-          }
-      },
-      {
-        name: 'James',
-        email:  'James@gmail.com',
-        phoneNumber: '081282913391',
-        address:
-          {
-            zipcode: 1421,
-            city: 'Bali',
-            province: 'Denpasar',
-            zone: 2,
-          }
-      }]
+    const userData = this.userDataService.getUsers();
+    this.dataUser = userData;
+      // this.dataUser = [{
+      //   name: 'Kenny',
+      //   email:  'Ken@gmail.com',
+      //   phoneNumber: '081382913391',
+      //   address:
+      //     {
+      //       zipcode: 14310,
+      //       city: 'Tangerang',
+      //       province: 'Cisauk',
+      //       zone: 1,
+      //     }
+      // },
+      // {
+      //   name: 'James',
+      //   email:  'James@gmail.com',
+      //   phoneNumber: '081282913391',
+      //   address:
+      //     {
+      //       zipcode: 1421,
+      //       city: 'Bali',
+      //       province: 'Denpasar',
+      //       zone: 2,
+      //     }
+      // }]
   }
 
 
@@ -88,13 +92,10 @@ export class AppComponent implements OnInit{
   }
 
 
-
-
   addUser(event: any) {
-    console.log("before", event)
-    this.dataUser.push(event)
-    console.log('after',this.dataUser)
+    this.userDataService.addUser(event)
   }
+  
   // onSubmit() {
   //   console.log(this.addUserForm.value)
   // }

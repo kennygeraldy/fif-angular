@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Output, EventEmitter } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DataUser } from '../app/app.entity';
+import { DataUser } from '../app.entity';
 
 
 @Component({
