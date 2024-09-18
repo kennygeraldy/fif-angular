@@ -33,11 +33,13 @@
           <td>
             <input [(ngModel)]="data.status" type="checkbox" name="status" id="status" (change)="setStatus(i)" [checked]="data.status"/>
           </td>
+          <td colspan="7" *ngIf="dataUser.length === 0">There is no data</td>
         </tr>
       </tbody>
   </table>
   </div>
 
+  <p class="noData" *ngIf="dataUser.length === 0">There is no data</p>
   <div id="snackbar"></div>
 
 
