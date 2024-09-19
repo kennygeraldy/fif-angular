@@ -16,7 +16,6 @@ export class HttpRequestService {
     private httpClient: HttpClient
   ) { }
 
-
   getData() {
     return this.httpClient.get(this.apiUrl);
   }
@@ -24,4 +23,9 @@ export class HttpRequestService {
   createUser(payload: DataUser) {
     return this.httpClient.post(this.apiUrl,payload)
   }
+
+  deleteUser(userId: string) {
+    const deleteUrl = `${this.apiUrl}/${userId}`; 
+    return this.httpClient.delete(deleteUrl); 
+  } 
 }

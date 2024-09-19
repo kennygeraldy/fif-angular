@@ -100,9 +100,9 @@ export class AppComponent implements OnInit{
   //   this.userDataService.addUser(event)
   // }
   
-  deleteUser(event: any) {
-    this.deleteDataService.deleteUser(event)
-  }
+  // deleteUser(event: any) {
+  //   this.deleteDataService.deleteUser(event)
+  // }
 
   isPaymentNearDeadline(event: Date): boolean {
     const deadlineDate = new Date(event);
@@ -145,7 +145,21 @@ export class AppComponent implements OnInit{
     const payload = userData;
     console.log(payload);
     this.httpRequestService.createUser(payload).subscribe((res: any) => {
+      this.fetchDataUser()
       console.log("success create user",res)
     })
   }
+
+  deleteUser(userId: any) {
+    this.httpRequestService.deleteUser(userId).subscribe(
+      (response) => {
+        console.log('User deleted successfully:', response);
+        this.fetchDataUser()
+      },
+      (error) => {
+        console.error('Error deleting user:', error);
+      }
+    );
+  }
+  
 }
