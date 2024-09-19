@@ -8,6 +8,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } f
 import { FormComponent } from "../form/form.component";
 import { ReversePipe } from './reverse.pipe';
 import { UserdataService } from './userdata.service';
+import { HttpRequestService } from '../service/http-service/http-request.service';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class AppComponent implements OnInit{
 
   constructor(
     private randomIdService: GenerateRandomIdService,
-    private userDataService: UserdataService
+    private userDataService: UserdataService,
+    private httpRequestService: HttpRequestService
   ) {
     this.randomId = this.randomIdService.generateId();
     this.addUserForm = new FormGroup({
@@ -78,8 +80,12 @@ export class AppComponent implements OnInit{
       //       zone: 2,
       //     }
       // }]
-  }
 
+      /* -------------------------------------------------------------------------- */
+      /*                                    DAY 3                                   */
+      /* -------------------------------------------------------------------------- */
+      this.fetchDataUser()
+  }
 
   eventFromParent(event: string) {
     console.log(event);
@@ -87,20 +93,22 @@ export class AppComponent implements OnInit{
     this.labelButton2 = event;
   }
 
-
   updateName(event: string) {
     this.name = event;
   }
-
-
-
 
   addUser(event: any) {
     console.log("before", event)
     this.dataUser.push(event)
     console.log('after',this.dataUser)
   }
-  // onSubmit() {
-  //   console.log(this.addUserForm.value)
-  // }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                    DAY 3                                   */
+  /* -------------------------------------------------------------------------- */
+  fetchDataUser() {
+    this.httpRequestService.getData().subscribe((res) => {
+      console.log(res)
+    })
+  }
 }
