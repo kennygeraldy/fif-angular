@@ -22,20 +22,27 @@ addUserForm!: FormGroup;
 constructor(
 ) {
   this.addUserForm = new FormGroup({
+    usernameForm: new FormControl('', Validators.required),
     nameForm: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    ageForm: new FormControl(0, Validators.required),
     emailForm: new FormControl('', [Validators.required, Validators.email]),
     cityForm: new FormControl('', Validators.required),
     provinceForm: new FormControl ('', Validators.required),
-    zipCodeForm: new FormControl (0, Validators.required),
-    phoneNumberForm: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(13)]),
+    zipCodeForm: new FormControl ('', Validators.required),
+    basicSalaryForm: new FormControl ('', Validators.required),
     paymentDeadlineForm: new FormControl(new Date(), [Validators.required]),
-    statusForm: new FormControl(false, [Validators.required])
+    isCheckedForm: new FormControl(false, [Validators.required])
   });
 }
 
-
+get usernameForm() {
+  return this.addUserForm.get('usernameForm')
+}
 get nameForm() {
   return this.addUserForm.get('nameForm')
+}
+get ageForm() {
+  return this.addUserForm.get('ageForm')
 }
 get emailForm() {
   return this.addUserForm.get('emailForm')
@@ -49,17 +56,14 @@ get provinceForm() {
 get zipCodeForm() {
   return this.addUserForm.get('zipCodeForm')
 }
-
+get basicSalaryForm() {
+  return this.addUserForm.get('basicSalaryForm')
+}
 get paymentDeadlineForm() {
   return this.addUserForm.get('paymentDeadlineForm')
 }
-
-get phoneNumberForm() {
-  return this.addUserForm.get('phoneNumberForm')
-
-}
-get statusForm() {
-  return this.addUserForm.get('statusForm')
+get isCheckedForm() {
+  return this.addUserForm.get('isCheckedForm')
 }
 
 
@@ -68,16 +72,16 @@ onSubmit() {
   if (this.addUserForm.valid) {
     const formData: DataUser =
     {
+      username: this.usernameForm?.value,
       name: this.nameForm?.value,
+      age: this.ageForm?.value,
       email: this.emailForm?.value,
-      phoneNumber: this.phoneNumberForm?.value,
-      address:{
-        zipcode: this.zipCodeForm?.value,
-        city: this.cityForm?.value,
-        province: this.provinceForm?.value,
-      },
+      zipcode: this.zipCodeForm?.value,
+      city: this.cityForm?.value,
+      province: this.provinceForm?.value,
+      basicSalary: this.basicSalaryForm?.value,
       paymentDeadline: this.paymentDeadlineForm?.value,
-      status: this.statusForm?.value,
+      isChecked: this.isCheckedForm?.value,
     }
     this.userDataSubmit.emit(formData);
     this.addUserForm.reset();
@@ -91,16 +95,16 @@ onDelete() {
   if(this.addUserForm.valid) {
     const formData: DataUser = 
     {
+      username: this.usernameForm?.value,
       name: this.nameForm?.value,
+      age: this.ageForm?.value,
       email: this.emailForm?.value,
-      phoneNumber: this.phoneNumberForm?.value,
-      address:{
-        zipcode: this.zipCodeForm?.value,
-        city: this.cityForm?.value,
-        province: this.provinceForm?.value,
-      },
+      zipcode: this.zipCodeForm?.value,
+      city: this.cityForm?.value,
+      province: this.provinceForm?.value,
+      basicSalary: this.basicSalaryForm?.value,
       paymentDeadline: this.paymentDeadlineForm?.value,
-      status: this.statusForm?.value,
+      isChecked: this.isCheckedForm?.value,
     }
     this.userDataDelete.emit((formData));
     console.log(formData)
@@ -113,16 +117,16 @@ strikethrough() {
   if(this.addUserForm.valid) {
     const formData: DataUser = 
     {
+      username: this.usernameForm?.value,
       name: this.nameForm?.value,
+      age: this.ageForm?.value,
       email: this.emailForm?.value,
-      phoneNumber: this.phoneNumberForm?.value,
-      address:{
-        zipcode: this.zipCodeForm?.value,
-        city: this.cityForm?.value,
-        province: this.provinceForm?.value,
-      },
+      zipcode: this.zipCodeForm?.value,
+      city: this.cityForm?.value,
+      province: this.provinceForm?.value,
+      basicSalary: this.basicSalaryForm?.value,
       paymentDeadline: this.paymentDeadlineForm?.value,
-      status: this.statusForm?.value,
+      isChecked: this.isCheckedForm?.value,
     }
     this.userStatus.emit((formData))
   } else {

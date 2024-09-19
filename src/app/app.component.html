@@ -1,46 +1,45 @@
 <div class="container">
   <h1 class="title">Form Data Diri</h1>
-  <app-form (userDataSubmit)="addUser($event)"></app-form>
+  <app-form (userDataSubmit)="createUser($event)"></app-form>
+
 
   <div class="table">
     <table class="table">
       <thead>
         <tr>
-          <th>No.</th>
-          <th>Nama</th>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Name</th>
           <th>Email</th>
-          <th>Address</th>
-          <th>Payment Deadline</th>
+          <th>Age</th>
+          <th>Basic Salary</th>
+          <th>City</th>
+          <th>Province</th>
           <th>Action</th>
-          <th>Completed?</th>
+          <th>Completed</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of dataUser, let i = index"  [ngClass]="{'strike': data.status, 'near-deadline': isPaymentNearDeadline(data.paymentDeadline)}">
+        <tr *ngFor="let data of dataUser, let i = index">
           <td>{{i + 1 }}</td>
+          <td>{{data.username }}</td>
           <td>{{data.name }}</td>
           <td>{{data.email}}</td>
-          <td>
-            <div>
-              {{data.address?.city}}, {{data.address?.province}}, {{data.address?.zipcode}}
-          </div>
-          </td>
-          <td>{{data.paymentDeadline | date}}</td>
+          <td>{{data.age}}</td>
+          <td>{{data.basicSalary}}</td>
+          <td>{{data.city}}</td>
+          <td>{{data.province}}</td>
           <td><a (click)="deleteUser(i)">
             <img src="https://img.icons8.com/?size=48&id=7837&format=png" width="20" height="20" alt="trashcan icon">
           </a>
            </td>
           <td>
-            <input [(ngModel)]="data.status" type="checkbox" name="status" id="status" (change)="setStatus(i)" [checked]="data.status"/>
+            <input [(ngModel)]="data.isChecked" type="checkbox" name="status" id="status" (change)="setStatus(i)" [checked]="data.isChecked"/>
           </td>
-          <td colspan="7" *ngIf="dataUser.length === 0">There is no data</td>
         </tr>
       </tbody>
-  </table>
+    </table>
   </div>
-
-  <p class="noData" *ngIf="dataUser.length === 0">There is no data</p>
-  <div id="snackbar"></div>
 
 
  
@@ -87,7 +86,6 @@
      <!-- ----------------------------------------------------------------------- -->
 
      <!-- <div class="shown" *ngIf="isShown; else shownFalse">muncul</div>
-     <div class="shown" *ngIf="!isShown">muncul ketika false</div>
      <ng-template #shownFalse>
       <p>false untuk ng template</p>
      </ng-template>
@@ -101,14 +99,27 @@
     <p>{{today | date:'MM-d-YYYY'}}</p> -->
 
      <!-- <ul>
-       <li *ngFor="let item of dataUser.address">
-         {{item.city}}
-         <div [ngSwitch]="item.zone">
-           <div *ngSwitchCase="1" [ngStyle]="{color: item.zone === 1 ? 'red' : 'yellow'}">merah</div>
-           <div *ngSwitchCase="2" [ngClass]="{'zone-safe': item.zone === 2}">biru</div>
-           <div *ngSwitchCase="3" [ngClass]="item.zone === 3 ? 'zone-green' : 'zone-safe'">hijau</div>
+       <li *ngFor="let item of dataUser">
+         {{item.address?.city}}
+         <div [ngSwitch]="item.address?.zone">
+           <div *ngSwitchCase="1" [ngStyle]="{color: item.address?.zone === 1 ? 'red' : 'yellow'}">merah</div>
+           <div *ngSwitchCase="2" [ngClass]="{'zone-safe': item.address?.zone === 2}">biru</div>
+           <div *ngSwitchCase="3" [ngClass]="item.address?.zone === 3 ? 'zone-green' : 'zone-safe'">hijau</div>
            <div *ngSwitchDefault>kuning</div>
          </div>
        </li>
      </ul> -->
+
+     <!-- ----------------------------------------------------------------------- -->
+     <!--                                  DAY 3                                  -->
+     <!-- ----------------------------------------------------------------------- -->
+     <!-- <div *ngIf="!isLoading">
+      <button (click)="createUser()">Create</button>
+       <div *ngFor="let item of dataUser">
+        {{item.username}}
+       </div>
+     </div>
+
+
+     <div *ngIf="isLoading">Loading</div> -->
 </div>

@@ -7,9 +7,9 @@ import { GenerateRandomIdService } from '../service/generate-random-id/generate-
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormComponent } from "./form/form.component";
 import { ReversePipe } from '../pipe/reverse.pipe';
-import { UserdataService } from '../service/userdata/userdata.service';
 import { DeletedataService } from '../service/delete-data/deletedata.service';
 import { StatuspaymentService } from '../service/status-payment/statuspayment.service';
+import { HttpRequestService } from '../service/http-service/http-request.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ import { StatuspaymentService } from '../service/status-payment/statuspayment.se
 })
 export class AppComponent implements OnInit{
   title: string = 'fif-angular-mt';
-  dataUser!: Array<DataUser>;
+  dataUser!: DataUser[];
   randomId: string;
   labelButton1: string = 'Ini dari parent 1';
   labelButton2: string = 'Ini dari parent 2';
@@ -30,13 +30,14 @@ export class AppComponent implements OnInit{
   addUserForm!: FormGroup;
   isShown: boolean = true;
   today = new Date;
+  isLoading: boolean = false;
 
 
   constructor(
     private randomIdService: GenerateRandomIdService,
-    private userDataService: UserdataService,
     private deleteDataService: DeletedataService,
     private statusPaymentService: StatuspaymentService,
+    private httpRequestService: HttpRequestService
   ) {
     this.randomId = this.randomIdService.generateId();
     this.addUserForm = new FormGroup({
@@ -55,8 +56,6 @@ export class AppComponent implements OnInit{
 
 
   ngOnInit(): void {
-    const userData = this.userDataService.getUsers();
-    this.dataUser = userData;
       // this.dataUser = [{
       //   name: 'Kenny',
       //   email:  'Ken@gmail.com',
@@ -81,6 +80,7 @@ export class AppComponent implements OnInit{
       //       zone: 2,
       //     }
       // }]
+      this.fetchDataUser();
   }
 
 
@@ -96,9 +96,9 @@ export class AppComponent implements OnInit{
   }
 
 
-  addUser(event: any) {
-    this.userDataService.addUser(event)
-  }
+  // addUser(event: any) {
+  //   this.userDataService.addUser(event)
+  // }
   
   deleteUser(event: any) {
     this.deleteDataService.deleteUser(event)
@@ -127,5 +127,25 @@ export class AppComponent implements OnInit{
   
   setStatus(event: any) {
     this.statusPaymentService.setUserStatus(event)
+  }
+
+  fetchDataUser() {
+    this.isLoading = true;
+    this.httpRequestService.getData().subscribe((res: any) => {
+      this.isLoading = false;
+      this.dataUser = res;
+    },(err) => {
+      this.isLoading = false;
+      console.log(err)
+    })
+  }
+
+
+  createUser(userData: DataUser) {
+    const payload = userData;
+    console.log(payload);
+    this.httpRequestService.createUser(payload).subscribe((res: any) => {
+      console.log("success create user",res)
+    })
   }
 }
