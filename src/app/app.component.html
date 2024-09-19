@@ -98,7 +98,7 @@
      <!-- ----------------------------------------------------------------------- -->
      <!--                                  DAY 3                                  -->
      <!-- ----------------------------------------------------------------------- -->
-     <div *ngIf="!isLoading">
+     <!-- <div *ngIf="!isLoading">
       <button (click)="createUser()">Create</button>
        <div *ngFor="let item of dataUser">
         {{item.username}}
@@ -106,5 +106,6 @@
      </div>
 
 
-     <div *ngIf="isLoading">Loading</div>
+     <div *ngIf="isLoading">Loading</div> -->
+     <router-outlet></router-outlet>
 </div>
