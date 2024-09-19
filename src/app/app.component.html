@@ -81,9 +81,9 @@
     <p>{{'kenny' | reverse}}</p>
     <p>{{'kenny' | uppercase}}</p>
     <p>{{today | date}}</p>
-    <p>{{today | date:'MM-d-YYYY'}}</p>
+    <p>{{today | date:'MM-d-YYYY'}}</p> -->
 
-     <ul>
+     <!-- <ul>
        <li *ngFor="let item of dataUser">
          {{item.address?.city}}
          <div [ngSwitch]="item.address?.zone">
@@ -98,4 +98,13 @@
      <!-- ----------------------------------------------------------------------- -->
      <!--                                  DAY 3                                  -->
      <!-- ----------------------------------------------------------------------- -->
+     <div *ngIf="!isLoading">
+      <button (click)="createUser()">Create</button>
+       <div *ngFor="let item of dataUser">
+        {{item.username}}
+       </div>
+     </div>
+
+
+     <div *ngIf="isLoading">Loading</div>
 </div>

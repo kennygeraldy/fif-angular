@@ -20,7 +20,7 @@ import { HttpRequestService } from '../service/http-service/http-request.service
 })
 export class AppComponent implements OnInit{
   title: string = 'fif-angular-mt';
-  dataUser!: Array<DataUser>;
+  dataUser!: DataUser[];
   randomId: string;
   labelButton1: string = 'Ini dari parent 1';
   labelButton2: string = 'Ini dari parent 2';
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit{
   addUserForm!: FormGroup;
   isShown: boolean = true;
   today = new Date;
+  isLoading: boolean = false;
 
 
   constructor(
@@ -53,8 +54,8 @@ export class AppComponent implements OnInit{
 
 
   ngOnInit(): void {
-    const userData = this.userDataService.getUsers();
-    console.log(userData);
+    // const userData = this.userDataService.getUsers();
+    // console.log(userData);
 
       // this.dataUser = [{
       //   name: 'Kenny',
@@ -107,8 +108,31 @@ export class AppComponent implements OnInit{
   /*                                    DAY 3                                   */
   /* -------------------------------------------------------------------------- */
   fetchDataUser() {
-    this.httpRequestService.getData().subscribe((res) => {
-      console.log(res)
+    this.isLoading = true;
+    this.httpRequestService.getData().subscribe((res: any) => {
+      this.isLoading = false;
+      this.dataUser = res;
+    },(err) => {
+      this.isLoading = false;
+      console.log(err)
+    })
+  }
+
+  createUser() {
+    const payload = {
+      name: 'Kenny',
+      age: 25,
+      province: 'DKI',
+      city: 'Jakbar',
+      zipcode: '9191',
+      paymentDeadline: new Date,
+      username: 'KGeraldy',
+      email: 'kenny@gmail.com',
+      basicSalary: '100',
+      isChecked: false
+    }
+    this.httpRequestService.createUser(payload).subscribe((res: any) => {
+      console.log("success create user",res)
     })
   }
 }

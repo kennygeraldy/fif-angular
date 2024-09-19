@@ -14,5 +14,5 @@ export interface DataUser {
     province:        string;
     zipcode:         string;
     isChecked:       boolean;
-    id:              string;
+    id?:              string;
 }

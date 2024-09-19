@@ -53,25 +53,25 @@ get phoneNumberForm() {
 
 
 // Listener
-onSubmit() {
-  if (this.addUserForm.valid) {
-    const formData: DataUser =
-    {
-      name: this.nameForm?.value,
-      email: this.emailForm?.value,
-      phoneNumber: this.phoneNumberForm?.value,
-      address:{
-        zipcode: this.zipCodeForm?.value,
-        city: this.cityForm?.value,
-        province: this.provinceForm?.value,
-      }
-    }
-    this.userDataSubmit.emit(formData);
-    this.addUserForm.reset();
-    console.log(formData)
-  } else {
-    console.error('Form is invalid');
-  }
-}
+// onSubmit() {
+//   if (this.addUserForm.valid) {
+//     const formData: DataUser =
+//     {
+//       name: this.nameForm?.value,
+//       email: this.emailForm?.value,
+//       phoneNumber: this.phoneNumberForm?.value,
+//       address:{
+//         zipcode: this.zipCodeForm?.value,
+//         city: this.cityForm?.value,
+//         province: this.provinceForm?.value,
+//       }
+//     }
+//     this.userDataSubmit.emit(formData);
+//     this.addUserForm.reset();
+//     console.log(formData)
+//   } else {
+//     console.error('Form is invalid');
+//   }
+// }
 
 }
