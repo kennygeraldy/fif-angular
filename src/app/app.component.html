@@ -1,9 +1,9 @@
 <div class="container">
-  <h1 class="title">Form Data Diri</h1>
-  <app-form (userDataSubmit)="createUser($event)"></app-form>
+  <h1 class="title" (click)="goToLanding()">Form Data Diri</h1>
+  <!-- <app-form (userDataSubmit)="createUser($event)"></app-form> -->
+  <router-outlet></router-outlet>
 
-
-  <div class="table">
+  <!-- <div class="table">
     <table class="table">
       <thead>
         <tr>
@@ -39,7 +39,7 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 
 
  

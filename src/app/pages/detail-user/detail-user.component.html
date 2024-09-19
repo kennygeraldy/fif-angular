@@ -1,0 +1,65 @@
+<div class="container">
+    <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+
+      <label for="usernameForm">Input your username</label>
+      <input id="usernameForm" formControlName="usernameForm">
+      <div class="validation-error" *ngIf="usernameForm?.errors?.['required'] && usernameForm?.touched">
+        Notes: Please input your username
+      </div>
+      
+      <label for="nameForm">Input your name</label>
+      <input id="nameForm" formControlName="nameForm">
+      <div class="validation-error" *ngIf="nameForm?.errors?.['required'] && nameForm?.touched">
+        Notes: Please input your name
+      </div>
+      <div class="validation-error" *ngIf="nameForm?.errors?.['minlength'] && nameForm?.touched">
+        Notes: Character must be at least 3 digits
+      </div>
+      
+      <!-- <label for="ageForm">Input your age</label>
+      <input id="ageForm" formControlName="ageForm" type="number">
+      <div class="validation-error" *ngIf="ageForm?.errors?.['required'] && ageForm?.touched">
+        Notes: Please input your age
+      </div> -->
+
+      <label for="emailForm">Input your email</label>
+      <input id="emailForm" formControlName="emailForm">
+      <div class="validation-error" *ngIf="emailForm?.errors?.['required'] && emailForm?.touched">
+        Notes: Please input your email
+      </div>
+      
+      <label for="cityForm">Input your city</label>
+      <input id="cityForm" formControlName="cityForm">
+      <div class="validation-error" *ngIf="cityForm?.errors?.['required'] && cityForm?.touched">
+        Notes: Please input your city
+      </div>
+      
+      <label for="provinceForm">Input your province</label>
+      <input id="provinceForm" formControlName="provinceForm">
+      <div class="validation-error" *ngIf="provinceForm?.errors?.['required'] && provinceForm?.touched">
+        Notes: Please input your province
+      </div>
+      
+      <label for="zipCodeForm">Input your zipcode</label>
+      <input id="zipCodeForm" formControlName="zipCodeForm">
+      <div class="validation-error" *ngIf="zipCodeForm?.errors?.['required'] && zipCodeForm?.touched">
+        Notes: Please input your zipcode
+      </div>
+      
+      <label for="basicSalaryForm">Input your basic salary</label>
+      <input id="basicSalaryForm" formControlName="basicSalaryForm">
+      <div class="validation-error" *ngIf="basicSalaryForm?.errors?.['required'] && basicSalaryForm?.touched">
+        Notes: Please input your basic salary
+      </div>
+
+      <label for="paymentDeadlineForm">Input your payment deadline</label>
+      <input id="paymentDeadlineForm" formControlName="paymentDeadlineForm" type="date">
+      <div class="validation-error" *ngIf="paymentDeadlineForm?.errors?.['required'] && paymentDeadlineForm?.touched">
+        Notes: Please input your payment deadline
+      </div>
+
+      <div class="wrapper">
+          <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
+        </div>
+      </form>
+    </div>

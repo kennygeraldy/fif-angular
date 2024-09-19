@@ -20,12 +20,20 @@ export class HttpRequestService {
     return this.httpClient.get(this.apiUrl);
   }
 
+  getDataById(id: any) {
+    return this.httpClient.get(`${this.apiUrl}/${id}`);
+  }
+
   createUser(payload: DataUser) {
-    return this.httpClient.post(this.apiUrl,payload)
+    return this.httpClient.post(this.apiUrl,payload);
   }
 
   deleteUser(userId: string) {
     const deleteUrl = `${this.apiUrl}/${userId}`; 
     return this.httpClient.delete(deleteUrl); 
   } 
+
+  editData(userId:any,  payload:DataUser){
+    return this.httpClient.put(`${this.apiUrl}/${userId}`, payload);
+  }
 }

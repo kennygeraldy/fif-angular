@@ -74,7 +74,7 @@ onSubmit() {
     {
       username: this.usernameForm?.value,
       name: this.nameForm?.value,
-      age: this.ageForm?.value,
+      // age: this.ageForm?.value,
       email: this.emailForm?.value,
       zipcode: this.zipCodeForm?.value,
       city: this.cityForm?.value,
@@ -97,7 +97,7 @@ onDelete() {
     {
       username: this.usernameForm?.value,
       name: this.nameForm?.value,
-      age: this.ageForm?.value,
+      // age: this.ageForm?.value,
       email: this.emailForm?.value,
       zipcode: this.zipCodeForm?.value,
       city: this.cityForm?.value,
@@ -119,7 +119,7 @@ strikethrough() {
     {
       username: this.usernameForm?.value,
       name: this.nameForm?.value,
-      age: this.ageForm?.value,
+      // age: this.ageForm?.value,
       email: this.emailForm?.value,
       zipcode: this.zipCodeForm?.value,
       city: this.cityForm?.value,

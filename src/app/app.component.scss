@@ -19,34 +19,7 @@ body {
 
 .title {
     margin: 5vh;
-}
-
-table {
-    border-collapse: collapse;
-    border: 1px solid;
-    width: 50vw;
-}
-
-
-th, td {
-    border: 1px solid;
-    padding: 10px;
-    text-align: center; 
-}
-
-thead {
-    background-color: #4CAF50;
-    color: white;
-    th {
-        padding: 10px;
-    }
-}
-
-tbody {
-    td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    }
+    cursor: pointer;
 }
 
 .strike {
