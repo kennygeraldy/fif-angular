@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of dataUser; let i = index" (click)="goToDetail(data.id)">
+          <tr *ngFor="let data of dataUser; let i = index"  [ngClass]="{'strike': data.isChecked, 'near-deadline': isPaymentNearDeadline(data.paymentDeadline)}" (click)="goToDetail(data.id)">
           <td>{{i + 1 }}</td>
           <td>{{data.id }}</td>
           <td>{{data.paymentDeadline }}</td>
@@ -33,7 +33,9 @@
           </a>
            </td>
           <td>
-            <input [(ngModel)]="data.isChecked" type="checkbox" name="status" id="status" (change)="setStatus(i)" [checked]="data.isChecked" />
+            <div (click)="$event.stopPropagation()">
+              <input [(ngModel)]="data.isChecked" type="checkbox" name="status" id="status" (change)="setStatus(i)" [checked]="data.isChecked" />
+            </div>
           </td>
         </tr>
       </tbody>
@@ -42,3 +44,4 @@
         <button (click)="goToForm()">Add New User</button>
       </div>
   </div>
+  <div id="snackbar"></div>

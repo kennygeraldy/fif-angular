@@ -84,6 +84,20 @@ get isCheckedForm() {
 
 
 // Listener
+showSnackbar(message: any) {
+  let snackbar = document.getElementById("snackbar");
+
+  if (snackbar) {
+    snackbar.textContent = message;
+
+    snackbar.classList.add("show");
+
+    setTimeout(function () {
+      snackbar.classList.remove("show");
+    }, 3000);
+  }
+}
+
 fetchDataUserNormal() {
   this.isLoading = true;
   this.httpRequestService.getData().subscribe((res: any) => {
@@ -123,6 +137,7 @@ createUser(userData: DataUser) {
   console.log(payload);
   this.httpRequestService.createUser(payload).subscribe((res: any) => {
     this.fetchDataUserNormal()
+    this.showSnackbar('User created successfully!');
     console.log("success create user",res)
   })
 }

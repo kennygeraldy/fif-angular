@@ -30,6 +30,20 @@ export class LandingComponent implements OnInit {
       this.fetchDataUser();
   }
 
+  showSnackbar(message: any) {
+    let snackbar = document.getElementById("snackbar");
+  
+    if (snackbar) {
+      snackbar.textContent = message;
+  
+      snackbar.classList.add("show");
+  
+      setTimeout(function () {
+        snackbar.classList.remove("show");
+      }, 3000);
+    }
+  }
+
   fetchDataUser() {
     this.isLoading = true;
     this.httpRequestService.getData().subscribe((res: any) => {
@@ -49,6 +63,13 @@ export class LandingComponent implements OnInit {
       console.log("success create user",res)
     })
   }
+  
+  isPaymentNearDeadline(event: Date): boolean {
+    const deadlineDate = new Date(event);
+    const differenceInTime = deadlineDate.getTime() - new Date().getTime();
+    const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+    return differenceInDays < 3;
+  }
 
   setStatus(event: any) {
     this.statusPaymentService.setUserStatus(event)
@@ -58,6 +79,7 @@ export class LandingComponent implements OnInit {
     this.httpRequestService.deleteUser(userId).subscribe(
       (response) => {
         console.log('User deleted successfully:', response);
+        this.showSnackbar('User deleted successfully!');
         this.fetchDataUser()
       },
       (error) => {
