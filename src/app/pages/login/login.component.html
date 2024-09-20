@@ -1,0 +1,16 @@
+<div class="login-form">
+    <h2>Login</h2>
+   
+    <label for="usernameForm">Input your username</label>
+    <input id="usernameForm"  [(ngModel)]="username">
+
+
+
+
+    <label for="passwordForm">Input your email</label>
+    <input id="passwordForm" type="password" [(ngModel)]="password">
+
+
+    <button (click)="onLogin()">Login</button>
+    <div *ngIf="error" class="error-message">{{error}}</div>
+</div>

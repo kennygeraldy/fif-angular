@@ -11,12 +11,13 @@ import { DeletedataService } from '../service/delete-data/deletedata.service';
 import { StatuspaymentService } from '../service/status-payment/statuspayment.service';
 import { HttpRequestService } from '../service/http-service/http-request.service';
 import { LandingComponent } from "./pages/landing/landing.component";
+import { LogoutComponent } from "./logout/logout.component";
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ButtonComponent, FormsModule, ReactiveFormsModule, FormComponent, ReversePipe, LandingComponent],
+  imports: [RouterOutlet, CommonModule, ButtonComponent, FormsModule, ReactiveFormsModule, FormComponent, ReversePipe, LandingComponent, LogoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
