@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { DataUser } from './app.entity';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from "../button/button.component";
-import { GenerateRandomIdService } from '../generate-random-id.service';
+import { GenerateRandomIdService } from '../service/generate-random-id/generate-random-id.service';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormComponent } from "../form/form.component";
 import { ReversePipe } from './reverse.pipe';
