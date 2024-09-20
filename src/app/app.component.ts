@@ -34,6 +34,8 @@ export class AppComponent implements OnInit{
   today = new Date;
   isLoading: boolean = false;
   idUrl: string | null = '';
+  isloginRoute: boolean = false;
+  
 
 
   constructor(
@@ -43,6 +45,9 @@ export class AppComponent implements OnInit{
     private httpRequestService: HttpRequestService,
     private router: Router
   ) {
+    this.router.events.subscribe(() => {
+      this.isloginRoute = this.router.url === '/login';
+    })
     this.randomId = this.randomIdService.generateId();
     this.addUserForm = new FormGroup({
       name: new FormControl('', [Validators.required]),

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="wrapper">
     <h1 class="title" (click)="goToLanding()">Form Data Diri</h1>
-    <app-logout></app-logout>
+    <app-logout *ngIf="!isloginRoute"></app-logout>
   </div>
   <!-- <app-form (userDataSubmit)="createUser($event)"></app-form> -->
   <router-outlet></router-outlet>

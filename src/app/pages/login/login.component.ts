@@ -15,6 +15,7 @@ export class LoginComponent {
   username: string = 'emilys';
   password: string = 'emilyspass';
   error: string = '';
+  isNotLoggedIn: boolean = true;
 
 
   constructor(
