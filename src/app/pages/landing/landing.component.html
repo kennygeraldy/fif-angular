@@ -34,7 +34,7 @@
            </td>
           <td>
             <div (click)="$event.stopPropagation()">
-              <input [(ngModel)]="data.isChecked" type="checkbox" name="status" id="status" (change)="setStatus(i)" [checked]="data.isChecked" />
+              <input [(ngModel)]="data.isChecked" type="checkbox" name="status" id="status" (change)="setStatus(data.id, data)" [checked]="data.isChecked" />
             </div>
           </td>
         </tr>

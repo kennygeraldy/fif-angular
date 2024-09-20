@@ -71,8 +71,15 @@ export class LandingComponent implements OnInit {
     return differenceInDays < 3;
   }
 
-  setStatus(event: any) {
-    this.statusPaymentService.setUserStatus(event)
+  setStatus(id:any, event:any){
+    this.httpRequestService.editData(id, event).subscribe(
+      (res:any)=>{
+        console.log("User status updated successfully", res);
+      }, (err) => {
+        console.log(err)
+        this.goToError()
+      }
+    );
   }
 
   deleteUser(userId: any) {
@@ -99,5 +106,9 @@ export class LandingComponent implements OnInit {
 
   goToForm() {
     this.router.navigate(['/detail/0/add']);
+  }
+
+  goToError(){
+    this.router.navigate([''], {queryParams:{error:true}});
   }
 }
